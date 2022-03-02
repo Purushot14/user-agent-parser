@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="user-agent-parser",  # This is the name of the package
-    version="0.1.0",  # The initial release version
+    version="0.1.1",
     author="Purushot14",  # Full name of the author
     author_email="prakash.purushoth@gmail.com",
     description="Parser User agent string and get device details",

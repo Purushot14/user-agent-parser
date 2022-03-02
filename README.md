@@ -32,6 +32,10 @@ _____________
 Changelog
 __________
 
+### Version 0.1.1
+
+* Doc added
+
 ### Version 0.1
 
 * Initial release
