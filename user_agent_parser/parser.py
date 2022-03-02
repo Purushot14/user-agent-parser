@@ -6,7 +6,7 @@ __author__ = 'Prakash14'
 import re
 from typing import List, Tuple
 
-from user_agent_parser.src.constants import MOBILE_DEVICE_CODE_NAME, DEVICE_TYPE, OS, DEVICE_NAME
+from .constants import MOBILE_DEVICE_CODE_NAME, DEVICE_TYPE, OS, DEVICE_NAME
 
 
 def get_str_from_long_text_under_bract(search_str: str):
