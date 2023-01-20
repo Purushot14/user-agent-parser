@@ -1999,6 +1999,9 @@ MOBILE_DEVICE_CODE_NAME = {
     "ASUS_Z01RD": "Asus Zenfone 5Z",
     "ZS630KL": "Asus Zenfone 6",
     "I01WD": "Asus Zenfone 6",
+    # LG device
+    "LG-V700": "LG G Pad 10.1",
+    "LG-US996": "LG V20",
     #     Others
     "V2037": "vivo Y20G",
     "I2012": "vivo"

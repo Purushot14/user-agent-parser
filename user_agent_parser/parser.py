@@ -78,6 +78,13 @@ class Parser:
         return self._platform_str
 
     def _get_device(self, _token: List[str]):
+        """
+        :param _token: :return:
+        TODO: Need to hand windows phone and UC Browser
+        Sample:  Mozilla/5.0 (compatible; MSIE 10.0; Windows
+        Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 920) UCBrowser/10.1.0.563 Mobile
+
+        """
         if _token[0].startswith("Windows NT"):
             self._os_version = _token[0].split()[-1]
             self._os = OS.WINDOWS
