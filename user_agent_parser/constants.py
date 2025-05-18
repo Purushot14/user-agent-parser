@@ -2004,5 +2004,59 @@ MOBILE_DEVICE_CODE_NAME = {
     "LG-US996": "LG V20",
     #     Others
     "V2037": "vivo Y20G",
-    "I2012": "vivo"
+    "I2012": "vivo",
+
+    # Nothing devices
+    "A065": "Nothing Phone 1",
+
+    # Vivo newer models
+    "V2045": "Vivo X60 Pro",
+    "V2123A": "Vivo X70 Pro",
+    "V2118A": "Vivo V23 Pro",
+
+    # Google Pixel devices
+    "Pixel 4": "Google Pixel 4",
+    "Pixel 4 XL": "Google Pixel 4 XL",
+    "Pixel 5": "Google Pixel 5",
+    "Pixel 6": "Google Pixel 6",
+    "Pixel 6 Pro": "Google Pixel 6 Pro",
+    "Pixel 7": "Google Pixel 7",
+    "Pixel 7 Pro": "Google Pixel 7 Pro",
+
+    # Samsung newer models
+    "SM-G991B": "Samsung Galaxy S21",
+    "SM-G996B": "Samsung Galaxy S21+",
+    "SM-G998B": "Samsung Galaxy S21 Ultra",
+    "SM-S901B": "Samsung Galaxy S22",
+    "SM-S906B": "Samsung Galaxy S22+",
+    "SM-S908B": "Samsung Galaxy S22 Ultra",
+    "SM-F936B": "Samsung Galaxy Z Fold 4",
+    "SM-F721B": "Samsung Galaxy Z Flip 4",
+
+    # iPhone models
+    "iPhone14,2": "iPhone 13 Pro",
+    "iPhone14,3": "iPhone 13 Pro Max",
+    "iPhone14,4": "iPhone 13 mini",
+    "iPhone14,5": "iPhone 13",
+    "iPhone15,2": "iPhone 14 Pro",
+    "iPhone15,3": "iPhone 14 Pro Max",
+    "iPhone15,4": "iPhone 14 Plus",
+    "iPhone15,5": "iPhone 14",
+
+    # OnePlus newer models
+    "OnePlus 9": "OnePlus 9",
+    "OnePlus 9 Pro": "OnePlus 9 Pro",
+    "OnePlus 10 Pro": "OnePlus 10 Pro",
+    "OnePlus Nord": "OnePlus Nord",
+    "OnePlus Nord 2": "OnePlus Nord 2",
+
+    # Xiaomi newer models
+    "M2101K6G": "Xiaomi Redmi Note 10 Pro",
+    "M2102J20SG": "Xiaomi POCO X3 Pro",
+    "M2012K11AG": "Xiaomi POCO F3",
+
+    # Oppo newer models
+    "CPH2173": "Oppo Find X3 Pro",
+    "CPH2211": "Oppo Find X5 Pro",
+    "CPH2307": "Oppo Reno7 5G",
 }

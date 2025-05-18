@@ -132,3 +132,39 @@ class TestUserAgentParser(TestCase):
         self.assertEqual(ua_parser.browser, "Firefox")
         self.assertEqual(ua_parser.browser_version, "72.0")
         self.assertEqual(ua_parser.device_type, DEVICE_TYPE.COMPUTER)
+
+    def test_google_pixel_ua(self):
+        ua_str = "Mozilla/5.0 (Linux; Android 12; Pixel 6 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Mobile Safari/537.36"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.ANDROID)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DEVICE_TYPE.MOBILE)
+        self.assertEqual(ua_parser.device_name, "Google Pixel 6 Pro")
+
+    def test_samsung_s22_ua(self):
+        ua_str = "Mozilla/5.0 (Linux; Android 12; SM-S908B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Mobile Safari/537.36"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.ANDROID)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DEVICE_TYPE.MOBILE)
+        self.assertEqual(ua_parser.device_name, "Samsung Galaxy S22 Ultra")
+
+    def test_iphone_14_ua(self):
+        ua_str = "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.IOS)
+        self.assertEqual(ua_parser.browser, "Safari")
+        self.assertEqual(ua_parser.device_type, DEVICE_TYPE.MOBILE)
+        self.assertEqual(ua_parser.device_name, DEVICE_NAME.IPHONE)
+
+    def test_huawei_ua(self):
+        ua_str = "Mozilla/5.0 (Linux; Android 10; HUAWEI P30 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Mobile Safari/537.36"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.ANDROID)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DEVICE_TYPE.MOBILE)
+        self.assertEqual(ua_parser.device_name, "Huawei P30 Pro")
