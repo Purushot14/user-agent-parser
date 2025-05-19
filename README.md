@@ -11,9 +11,6 @@
 [![Docs](https://img.shields.io/badge/docs-gh--pages-blue.svg)](https://purushot14.github.io/user-agent-parser/)
 [![Open Issues](https://img.shields.io/github/issues/Purushot14/user-agent-parser.svg)](https://github.com/Purushot14/user-agent-parser/issues)
 
-> **⭐ If you find this project useful, please star it on GitHub!**
-
-
 > **⭐ If you find this project useful, please star it on GitHub!**
 
 # Python User Agent Parser
