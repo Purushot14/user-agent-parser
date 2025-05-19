@@ -36,4 +36,4 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          poetry run pytest --cov=user_agent_parser --cov-report=xml
+          poetry run pytest -q
