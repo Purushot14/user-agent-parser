@@ -1,6 +1,18 @@
 [![PyPI](https://img.shields.io/pypi/v/user-agent-parser.svg)](https://pypi.org/project/user-agent-parser/)
 [![Downloads](https://pepy.tech/badge/user-agent-parser/month)](https://pepy.tech/project/user-agent-parser)
-[![CI](https://github.com/Purushot14/user-agent-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/Purushot14/user-agent-parser/actions/workflows/ci.yml)
+[![Python Versions](https://img.shields.io/pypi/pyversions/user-agent-parser.svg)](https://pypi.org/project/user-agent-parser/)
+[![License](https://img.shields.io/github/license/Purushot14/user-agent-parser.svg)](https://github.com/Purushot14/user-agent-parser/blob/main/LICENSE)
+[![Codecov](https://codecov.io/github/Purushot14/user-agent-parser/branch/main/graph/badge.svg)](https://codecov.io/gh/Purushot14/user-agent-parser)
+[![CI](https://github.com/Purushot14/user-agent-parser/actions/workflows/main.yml/badge.svg)](https://github.com/Purushot14/user-agent-parser/actions/workflows/ci.yml)
+[![Wheel](https://img.shields.io/pypi/wheel/user-agent-parser.svg)](https://pypi.org/project/user-agent-parser/#files)
+[![Implementation](https://img.shields.io/pypi/implementation/user-agent-parser.svg)](https://pypi.org/project/user-agent-parser/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Linter: ruff](https://img.shields.io/badge/linter-ruff-5D8FCC.svg?logo=ruff&logoColor=white)](https://docs.astral.sh/ruff/)
+[![Docs](https://img.shields.io/badge/docs-gh--pages-blue.svg)](https://purushot14.github.io/user-agent-parser/)
+[![Open Issues](https://img.shields.io/github/issues/Purushot14/user-agent-parser.svg)](https://github.com/Purushot14/user-agent-parser/issues)
+
+> **⭐ If you find this project useful, please star it on GitHub!**
+
 
 > **⭐ If you find this project useful, please star it on GitHub!**
 
