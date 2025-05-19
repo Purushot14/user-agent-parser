@@ -1,3 +1,9 @@
+[![PyPI](https://img.shields.io/pypi/v/user-agent-parser.svg)](https://pypi.org/project/user-agent-parser/)
+[![Downloads](https://pepy.tech/badge/user-agent-parser/month)](https://pepy.tech/project/user-agent-parser)
+[![CI](https://github.com/Purushot14/user-agent-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/Purushot14/user-agent-parser/actions/workflows/ci.yml)
+
+> **⭐ If you find this project useful, please star it on GitHub!**
+
 # Python User Agent Parser
 
 `user_agent_parser` is a Python 3 library that provides an easy way to identify/detect devices from user agent string

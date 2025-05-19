@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this library, please cite it using the metadata below."
+title: "user-agent-parser"
+version: "0.1.5"
+doi: "10.5281/zenodo.XXXXXXX"  # ⬅️ Replace with Zenodo DOI after you create one
+date-released: "2025-05-19"
+type: software
+license: MIT
+url: "https://pypi.org/project/user-agent-parser/"
+repository-code: "https://github.com/Purushot14/user-agent-parser"
+abstract: "Lightweight Python 3 library for fast, accurate parsing of User-Agent strings to detect browser, OS, and device details."
+keywords:
+  - "user agent"
+  - "user-agent parser"
+  - "ua parser"
+  - "browser detection"
+  - "device detection"
+  - "python"
+authors:
+  - family-names: "Purushoth"
+    given-names: "Prakash"
+    email: "prakash.purushoth@gmail.com"
+    orcid: "0000-0000-0000-0000"  # ⬅️ Replace with your ORCID if available

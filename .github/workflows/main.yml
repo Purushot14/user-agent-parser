@@ -1,13 +1,39 @@
+name: CI
 
-          
-name: Lint Commit Messages
-on: [pull_request, push]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-  commitlint:
+  test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
-          fetch-depth: 0
-      - uses: Purushot14/user-agent-parser@v5
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install Poetry
+        run: |
+          pip install poetry
+
+      - name: Install project
+        run: |
+          poetry install --no-interaction --no-ansi
+
+      - name: Run tests with coverage
+        run: |
+          poetry run pytest --cov=user_agent_parser --cov-report=xml
