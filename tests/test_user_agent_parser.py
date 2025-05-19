@@ -5,8 +5,8 @@ __author__ = "Prakash14"
 
 from unittest import TestCase
 
-from .constants import OS, DeviceName, DeviceType
-from .parser import Parser
+from user_agent_parser.constants import OS, DeviceName, DeviceType
+from user_agent_parser.parser import Parser
 
 iphone_ua_str = (
     "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) "
