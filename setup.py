@@ -5,12 +5,12 @@ __author__ = 'Purushot14'
 
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="user-agent-parser",  # This is the name of the package
-    version="0.1.2",
+    version="0.1.3",
     author="Purushot14",  # Full name of the author
     author_email="prakash.purushoth@gmail.com",
     description="Parser User agent string and get device details",
@@ -29,5 +29,5 @@ setuptools.setup(
         'Intended Audience :: Developers'
     ],  # Information to filter the project on PyPi website
     python_requires='>=3.6',  # Minimum version requirement of the package
-    install_requires=[]  # Install other dependencies if any
+    install_requires=[], # Install other dependencies if any
 )

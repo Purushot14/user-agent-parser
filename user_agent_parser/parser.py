@@ -2,27 +2,28 @@
     Created by prakash at 02/03/22
     Optimized version
 """
-__author__ = 'Prakash14'
+__author__ = "Prakash14"
 
+import contextlib
 import re
-from typing import List, Tuple, Dict, Callable, Optional, Any
+from typing import Callable, Dict, List, Optional, Tuple
 
-from .constants import MOBILE_DEVICE_CODE_NAME, DEVICE_TYPE, OS, DEVICE_NAME
+from .constants import MOBILE_DEVICE_CODE_NAME, OS, DeviceName, DeviceType
 
 
 def get_str_from_long_text_under_bract(search_str: str):
     start_idx = search_str.find("(")
     stop_idx = 0
     bract_counter = 0
-    for match in re.finditer(r'\(|\)', search_str):
+    for match in re.finditer(r"\(|\)", search_str):
         stop_idx = match.start()
-        if search_str[stop_idx] == '(':
+        if search_str[stop_idx] == "(":
             bract_counter += 1
         else:
             bract_counter -= 1
         if bract_counter == 0:
             break
-    _str = search_str[start_idx:stop_idx + 1]
+    _str = search_str[start_idx : stop_idx + 1]
     return _str, stop_idx + 1
 
 
@@ -74,11 +75,18 @@ class Parser:
         self._device_name = None
         self._device_host = None
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self):
         self._get_platform()
         self._get_browser()
-        return self._browser, self._browser_version, self._os, self._os_version, self._device_type, \
-               self._device_name, self._device_host
+        return (
+            self._browser,
+            self._browser_version,
+            self._os,
+            self._os_version,
+            self._device_type,
+            self._device_name,
+            self._device_host,
+        )
 
     def _lazy_init(self) -> None:
         """Helper method for lazy initialization"""
@@ -100,46 +108,46 @@ class Parser:
         if _token[0].startswith("Windows NT"):
             self._os_version = _token[0].split()[-1]
             self._os = OS.WINDOWS
-            self._device_type = DEVICE_TYPE.COMPUTER
+            self._device_type = DeviceType.COMPUTER
         elif _token[0].startswith("Android"):
             self._os_version = _token[0].split()[-1]
             self._os = OS.ANDROID
-            self._device_type = DEVICE_TYPE.MOBILE
-            self._device_name = DEVICE_NAME.ANDROID
+            self._device_type = DeviceType.MOBILE
+            self._device_name = DeviceName.ANDROID
         elif _token[0].startswith(OS.WINDOWS_PHONE):
             self._os_version = _token[0].split()[-1]
             self._os = OS.WINDOWS_PHONE
-            self._device_type = DEVICE_TYPE.MOBILE
+            self._device_type = DeviceType.MOBILE
         elif _token[0].startswith("Apple Mac OS"):
             self._os_version = _token[0].split()[-1]
             self._os = OS.MAC_OS
-            self._device_type = DEVICE_TYPE.COMPUTER
+            self._device_type = DeviceType.COMPUTER
         elif len(_token) > 1 and "Linux" in _token[1]:
             self._os = OS.LINUX
-            self._device_type = DEVICE_TYPE.COMPUTER
+            self._device_type = DeviceType.COMPUTER
 
     def _get_macintosh_device(self, _token: List[str]) -> None:
         self._os_version = _token[1].split()[-1]
         self._os = OS.MAC_OS
-        self._device_type = DEVICE_TYPE.COMPUTER
-        self._device_name = DEVICE_NAME.MAC
+        self._device_type = DeviceType.COMPUTER
+        self._device_name = DeviceName.MAC
 
     def _get_windows_device(self, _token: List[str]) -> None:
         self._os_version = _token[1].split()[-1]
         self._os = OS.WINDOWS
-        self._device_type = DEVICE_TYPE.COMPUTER
+        self._device_type = DeviceType.COMPUTER
 
     def _get_iphone_device(self, _token: List[str]) -> None:
         self._os_version = _token[1].split()[3]
         self._os = OS.IOS
-        self._device_type = DEVICE_TYPE.MOBILE
-        self._device_name = DEVICE_NAME.IPHONE
+        self._device_type = DeviceType.MOBILE
+        self._device_name = DeviceName.IPHONE
 
     def _get_ipad_device(self, _token: List[str]) -> None:
         self._os_version = _token[1].split()[2]
         self._os = OS.IOS
-        self._device_type = DEVICE_TYPE.MOBILE
-        self._device_name = DEVICE_NAME.IPAD
+        self._device_type = DeviceType.MOBILE
+        self._device_name = DeviceName.IPAD
 
     @staticmethod
     def _handle_oneplus(device_code: str) -> Optional[str]:
@@ -186,18 +194,18 @@ class Parser:
             "VIVO": lambda c: c,
             "MOTO": lambda c: c,
             "MI": lambda c: c,
-            "SAMSUNG": lambda c: "Samsung Galaxy",
+            "SAMSUNG": lambda c: "Samsung Galaxy",  # noqa: ARG005
             "SM-": lambda c: Parser._handle_samsung(c),
-            "RMX": lambda c: "Realme",
-            "CPH": lambda c: "Oppo",
-            "M20": lambda c: "Redmi",
-            "M21": lambda c: "Redmi",
-            "V20": lambda c: "vivo",
-            "V21": lambda c: "vivo",
-            "LM-": lambda c: "LG Mobile",
-            "LGL": lambda c: "LG Mobile",
-            "LG-": lambda c: "LG Mobile",
-            "ASUS": lambda c: "Asus",
+            "RMX": lambda c: "Realme",  # noqa: ARG005
+            "CPH": lambda c: "Oppo",  # noqa: ARG005
+            "M20": lambda c: "Redmi",  # noqa: ARG005
+            "M21": lambda c: "Redmi",  # noqa: ARG005
+            "V20": lambda c: "Vivo",  # noqa: ARG005
+            "V21": lambda c: "Vivo",  # noqa: ARG005
+            "LM-": lambda c: "LG Mobile",  # noqa: ARG005
+            "LGL": lambda c: "LG Mobile",  # noqa: ARG005
+            "LG-": lambda c: "LG Mobile",  # noqa: ARG005
+            "ASUS": lambda c: "Asus",  # noqa: ARG005
             "A0": lambda c: f"Nothing {c}",
         }
 
@@ -212,7 +220,7 @@ class Parser:
         if _token[1].lower().startswith("android"):
             self._os_version = _token[1].split()[-1]
             self._os = OS.ANDROID
-            self._device_type = DEVICE_TYPE.MOBILE
+            self._device_type = DeviceType.MOBILE
             device_name = _token[-1] if _token[-1] != "wv" else _token[-2]
             device_name = device_name.split("Build/")[0]
             if device_name.startswith(OS.ANDROID):
@@ -223,15 +231,15 @@ class Parser:
             self._device_name = device_name.title()
         else:
             self._os = OS.LINUX
-            self._device_type = DEVICE_TYPE.COMPUTER
+            self._device_type = DeviceType.COMPUTER
 
     def _get_x11_device(self, _token: List[str]) -> None:
         os_name = _token[1].split()[0]
-        self._device_type = DEVICE_TYPE.COMPUTER
+        self._device_type = DeviceType.COMPUTER
         if os_name == "CrOS":
             self._os_version = _token[1].split()[-1]
             self._os = OS.CHROME_OS
-            self._device_name = DEVICE_NAME.CHROME_BOOK
+            self._device_name = DeviceName.CHROME_BOOK
         else:
             self._os = os_name
 
@@ -239,20 +247,18 @@ class Parser:
         os_name = _token[1].split()[0]
         if _token[1].lower() == "google-apps-script":
             self._os = os_name
-            self._device_type = DEVICE_TYPE.SERVER
-            try:
+            self._device_type = DeviceType.SERVER
+            with contextlib.suppress(IndexError):
                 self._device_host = _token[3]
-            except IndexError:
-                pass
         elif os_name.upper() == "MSIE":
             self._browser = "Internet Explorer"
             self._os_version = _token[2].split()[-1]
             self._os = OS.WINDOWS
-            self._device_type = DEVICE_TYPE.COMPUTER
+            self._device_type = DeviceType.COMPUTER
         else:
             self._os = _token[1]
             self._device_name = _token[1].title()
-            self._device_type = DEVICE_TYPE.BOT
+            self._device_type = DeviceType.BOT
             self._device_host = _token[-1]
 
     def _get_platform(self) -> Optional[str]:
@@ -278,8 +284,7 @@ class Parser:
 
     def _get_browser(self) -> None:
         for browser_pattern, browser in self.browser_rules:
-            match = self._get_browser_regex(browser_pattern).search(
-                self._user_agent_str[self.last_closing_bract:])
+            match = self._get_browser_regex(browser_pattern).search(self._user_agent_str[self.last_closing_bract :])
             if match:
                 self._browser_version = match.group(1)
                 self._browser = browser
