@@ -41,8 +41,8 @@ python = ">=3.8"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.1.8"
-pytest = "^7.4.0"
-pytest-cov = "^4.1.0"
+pytest = "^8.2"
+pytest-cov = "^5.0"
 
 # --- unchanged lint / format config below ---
 [tool.ruff]

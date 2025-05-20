@@ -3,6 +3,7 @@
 """
 __author__ = "Prakash14"
 
+import logging
 from unittest import TestCase
 
 from user_agent_parser.constants import OS, DeviceName, DeviceType
@@ -216,3 +217,97 @@ class TestUserAgentParser(TestCase):
         self.assertEqual(ua_parser.browser, "Chrome")
         self.assertEqual(ua_parser.device_type, DeviceType.MOBILE)
         self.assertEqual(ua_parser.device_name, "Huawei P30 Pro")
+
+    def test_windows_desktop_chrome(self):
+        ua_str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.WINDOWS)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DeviceType.COMPUTER)
+
+    def test_macos_safari(self):
+        ua_str = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.MAC_OS)
+        self.assertEqual(ua_parser.browser, "Safari")
+        self.assertEqual(ua_parser.device_type, DeviceType.COMPUTER)
+
+    def test_firefox_browser(self):
+        ua_str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.WINDOWS)
+        self.assertEqual(ua_parser.browser, "Firefox")
+
+    def test_ipad_device(self):
+        ua_str = "Mozilla/5.0 (iPad; CPU OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.IOS)
+        self.assertEqual(ua_parser.device_type, DeviceType.MOBILE)
+        self.assertEqual(ua_parser.device_name, DeviceName.IPAD)
+
+    def test_malformed_ua_string(self):
+        ua_str = "Mozilla/5.0"  # Very short/incomplete UA string
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        # Assert default values based on your implementation
+
+    def test_linux_firefox(self):
+        ua_str = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+        ua_parser = Parser(ua_str)
+        logging.info(ua_parser.device_host)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.LINUX)
+        self.assertEqual(ua_parser.browser, "Firefox")
+        self.assertEqual(ua_parser.device_type, DeviceType.COMPUTER)
+
+    def test_samsung_s24_ultra_ua(self):
+        ua_str = (
+            "Mozilla/5.0 (Linux; Android 14; SM-S928B) AppleWebKit/537.36"
+            " (KHTML, like Gecko) Chrome/121.0.6167.164 Mobile Safari/537.36"
+        )
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.ANDROID)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DeviceType.MOBILE)
+        self.assertEqual(ua_parser.device_name, "Samsung Galaxy")
+
+    def test_samsung_tab_s10_ultra_ua(self):
+        ua_str = (
+            "Mozilla/5.0 (Linux; Android 14; SM-X920) AppleWebKit/537.36"
+            " (KHTML, like Gecko) Chrome/123.0.6312.70 Mobile Safari/537.36"
+        )
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.ANDROID)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DeviceType.MOBILE)
+        self.assertEqual(ua_parser.device_name, "Samsung Galaxy Tab")
+
+    def test_samsung_a_ua(self):
+        ua_str = (
+            "Mozilla/5.0 (Linux; Android 14; SM-A26) AppleWebKit/537.36"
+            " (KHTML, like Gecko) Chrome/123.0.6312.70 Mobile Safari/537.36"
+        )
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.ANDROID)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DeviceType.MOBILE)
+        self.assertEqual(ua_parser.device_name, "Samsung Galaxy A26")
+
+    def test_samsung_m_ua(self):
+        ua_str = (
+            "Mozilla/5.0 (Linux; Android 14; SM-M55) AppleWebKit/537.36"
+            " (KHTML, like Gecko) Chrome/123.0.6312.70 Mobile Safari/537.36"
+        )
+        ua_parser = Parser(ua_str)
+        ua_parser()
+        self.assertEqual(ua_parser.os, OS.ANDROID)
+        self.assertEqual(ua_parser.browser, "Chrome")
+        self.assertEqual(ua_parser.device_type, DeviceType.MOBILE)
+        self.assertEqual(ua_parser.device_name, "Samsung Galaxy M55")

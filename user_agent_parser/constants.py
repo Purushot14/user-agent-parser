@@ -1998,8 +1998,6 @@ MOBILE_DEVICE_CODE_NAME = {
     #     Others
     "V2037": "vivo Y20G",
     "I2012": "vivo",
-    # Nothing devices
-    "A065": "Nothing Phone 1",
     # Vivo newer models
     "V2045": "Vivo X60 Pro",
     "V2123A": "Vivo X70 Pro",

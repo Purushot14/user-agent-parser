@@ -163,9 +163,9 @@ class Parser:
     def _handle_samsung(device_code: str) -> str:
         up_device_code = device_code.upper()
         sub_name = ""
-        if up_device_code[4] in ("T", "X"):
+        if up_device_code[3] in ("T", "X"):
             sub_name = " Tab"
-        elif up_device_code[4] in ("M", "A"):
+        elif up_device_code[3] in ("M", "A"):
             sub_name = f" {up_device_code[3:6]}"
         return f"Samsung Galaxy{sub_name}"
 
@@ -228,7 +228,7 @@ class Parser:
                 device_name = None
             else:
                 device_name = self._get_device_name_from_code(device_name.strip()) or device_name
-            self._device_name = device_name.title()
+            self._device_name = device_name.title() if device_name else device_name
         else:
             self._os = OS.LINUX
             self._device_type = DeviceType.COMPUTER
@@ -250,6 +250,8 @@ class Parser:
             self._device_type = DeviceType.SERVER
             with contextlib.suppress(IndexError):
                 self._device_host = _token[3]
+            with contextlib.suppress(IndexError):
+                self._device_host = _token[2]
         elif os_name.upper() == "MSIE":
             self._browser = "Internet Explorer"
             self._os_version = _token[2].split()[-1]
