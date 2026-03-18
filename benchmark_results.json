@@ -1,0 +1,110 @@
+{
+  "legacy_parser": {
+    "test_name": "Legacy Parser",
+    "total_time_ms": 4.111289978027344,
+    "avg_time_per_request_ms": 0.1581265376164363,
+    "requests_per_second": 6324.049176525168,
+    "accuracy_score": 0.8,
+    "confidence_score": 0.6,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.0,
+    "error_rate": 0.0,
+    "feature_coverage": 0.3
+  },
+  "cached_parser": {
+    "test_name": "Cached Parser",
+    "total_time_ms": 0.23698806762695312,
+    "avg_time_per_request_ms": 0.004557462838979868,
+    "requests_per_second": 219420.3299798793,
+    "accuracy_score": 0.8,
+    "confidence_score": 0.6,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.5,
+    "error_rate": 0.0,
+    "feature_coverage": 0.3
+  },
+  "advanced_parser": {
+    "test_name": "Advanced Parser",
+    "total_time_ms": 0.7789134979248047,
+    "avg_time_per_request_ms": 0.029958211458646335,
+    "requests_per_second": 33379.829813284356,
+    "accuracy_score": 0.95,
+    "confidence_score": 0.6403846153846153,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.0,
+    "error_rate": 0.0,
+    "feature_coverage": 0.6153846153846154
+  },
+  "batch_processing": {
+    "test_name": "Batch Processing",
+    "total_time_ms": 2.9458999633789062,
+    "avg_time_per_request_ms": 0.011330384474534255,
+    "requests_per_second": 88258.25833603108,
+    "accuracy_score": 0.92,
+    "confidence_score": 0.85,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.8,
+    "error_rate": 0.2692307692307692,
+    "feature_coverage": 0.9
+  },
+  "accuracy_test": {
+    "test_name": "Accuracy Test",
+    "total_time_ms": 0.11181831359863281,
+    "avg_time_per_request_ms": 0.03727277119954427,
+    "requests_per_second": 26829.236673773987,
+    "accuracy_score": 0.6923076923076923,
+    "confidence_score": 0.9,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.0,
+    "error_rate": 0.0,
+    "feature_coverage": 1.0
+  },
+  "feature_coverage": {
+    "test_name": "Feature Coverage",
+    "total_time_ms": 0.15115737915039062,
+    "avg_time_per_request_ms": 0.0058137453519381006,
+    "requests_per_second": 172006.15772870663,
+    "accuracy_score": 0.9,
+    "confidence_score": 0.85,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.0,
+    "error_rate": 0.0,
+    "feature_coverage": 0.46703296703296704
+  },
+  "memory_usage": {
+    "test_name": "Memory Usage",
+    "total_time_ms": 0.6339550018310547,
+    "avg_time_per_request_ms": 0.0012191442342904897,
+    "requests_per_second": 820247.4915381722,
+    "accuracy_score": 0.9,
+    "confidence_score": 0.85,
+    "memory_usage_mb": 5.2,
+    "cache_hit_rate": 0.7,
+    "error_rate": 0.0,
+    "feature_coverage": 0.85
+  },
+  "concurrency": {
+    "test_name": "Concurrency Test",
+    "total_time_ms": 0.240325927734375,
+    "avg_time_per_request_ms": 0.009243304912860576,
+    "requests_per_second": 108186.41269841269,
+    "accuracy_score": 0.92,
+    "confidence_score": 0.88,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.6,
+    "error_rate": 0.0,
+    "feature_coverage": 0.9
+  },
+  "analytics": {
+    "test_name": "Analytics Generation",
+    "total_time_ms": 4.3468475341796875,
+    "avg_time_per_request_ms": 0.011145762908153044,
+    "requests_per_second": 89720.1930671347,
+    "accuracy_score": 1.0,
+    "confidence_score": 0.95,
+    "memory_usage_mb": 0.0,
+    "cache_hit_rate": 0.8,
+    "error_rate": 0.0,
+    "feature_coverage": 1.0
+  }
+}

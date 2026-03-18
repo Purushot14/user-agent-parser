@@ -1,30 +1,43 @@
 """
-    Created by prakash at 02/03/22
-    Optimized version
+Created by prakash at 02/03/22
+Optimized version
 """
+
 __author__ = "Prakash14"
 
 import contextlib
 import re
+from functools import lru_cache
 from typing import Callable, Dict, List, Optional, Tuple
 
 from .constants import MOBILE_DEVICE_CODE_NAME, OS, DeviceName, DeviceType
 
 
-def get_str_from_long_text_under_bract(search_str: str):
+@lru_cache(maxsize=512)
+def _cached_parse_user_agent(
+    user_agent_str: str,
+) -> Tuple[Optional[str], Optional[str], Optional[str], Optional[str], Optional[str], Optional[str], Optional[str]]:
+    """Cached version of user agent parsing for performance."""
+    parser = Parser(user_agent_str)
+    return parser()
+
+
+def get_str_from_long_text_under_bract(search_str: str) -> Tuple[str, int]:
+    """Efficiently extract content within first balanced parentheses."""
     start_idx = search_str.find("(")
-    stop_idx = 0
+    if start_idx == -1:
+        return "", 0
+
     bract_counter = 0
-    for match in re.finditer(r"\(|\)", search_str):
-        stop_idx = match.start()
-        if search_str[stop_idx] == "(":
+    for i, char in enumerate(search_str[start_idx:], start_idx):
+        if char == "(":
             bract_counter += 1
-        else:
+        elif char == ")":
             bract_counter -= 1
-        if bract_counter == 0:
-            break
-    _str = search_str[start_idx : stop_idx + 1]
-    return _str, stop_idx + 1
+            if bract_counter == 0:
+                return search_str[start_idx : i + 1], i + 1
+
+    return search_str[start_idx:], len(search_str)
 
 
 class Parser:
@@ -138,13 +151,19 @@ class Parser:
         self._device_type = DeviceType.COMPUTER
 
     def _get_iphone_device(self, _token: List[str]) -> None:
-        self._os_version = _token[1].split()[3]
+        try:
+            self._os_version = _token[1].split()[3] if len(_token) > 1 and len(_token[1].split()) > 3 else "Unknown"
+        except (IndexError, AttributeError):
+            self._os_version = "Unknown"
         self._os = OS.IOS
         self._device_type = DeviceType.MOBILE
         self._device_name = DeviceName.IPHONE
 
     def _get_ipad_device(self, _token: List[str]) -> None:
-        self._os_version = _token[1].split()[2]
+        try:
+            self._os_version = _token[1].split()[2] if len(_token) > 1 and len(_token[1].split()) > 2 else "Unknown"
+        except (IndexError, AttributeError):
+            self._os_version = "Unknown"
         self._os = OS.IOS
         self._device_type = DeviceType.MOBILE
         self._device_name = DeviceName.IPAD
@@ -152,7 +171,7 @@ class Parser:
     @staticmethod
     def _handle_oneplus(device_code: str) -> Optional[str]:
         code = device_code.split()[-1]
-        if code[1].isdigit():
+        if len(code) >= 2 and code[1].isdigit():
             model_name = code[1]
             if code[-2] == "1":
                 model_name = f"{model_name}T"
@@ -163,7 +182,7 @@ class Parser:
     def _handle_samsung(device_code: str) -> str:
         up_device_code = device_code.upper()
         sub_name = ""
-        if up_device_code[3] in ("T", "X"):
+        if len(up_device_code) > 3 and up_device_code[3] in ("T", "X"):
             sub_name = " Tab"
         elif up_device_code[3] in ("M", "A"):
             sub_name = f" {up_device_code[3:6]}"
@@ -249,9 +268,9 @@ class Parser:
             self._os = os_name
             self._device_type = DeviceType.SERVER
             with contextlib.suppress(IndexError):
-                self._device_host = _token[3]
-            with contextlib.suppress(IndexError):
                 self._device_host = _token[2]
+            with contextlib.suppress(IndexError):
+                self._device_host = _token[3]
         elif os_name.upper() == "MSIE":
             self._browser = "Internet Explorer"
             self._os_version = _token[2].split()[-1]
@@ -266,14 +285,19 @@ class Parser:
     def _get_platform(self) -> Optional[str]:
         _platform_str = self._get_platform_str()
         if _platform_str:
-            # Combine multiple replacements efficiently
-            for pattern in (" U;", " arm_64;", " arm;"):
-                _platform_str = _platform_str.replace(pattern, "")
+            # More efficient string cleaning using regex
+            _platform_str = re.sub(r" (?:U|arm_64|arm);", "", _platform_str)
 
             token = [t.strip() for t in _platform_str[1:-1].split(";")]
-            handler_name = f"_get_{token[0].lower()}_device"
-            handler = getattr(self, handler_name, self._get_device)
-            handler(token)
+            if token:
+                platform_key = token[0].lower()
+                for prefix in ("iphone", "ipad"):
+                    if platform_key.startswith(prefix):
+                        platform_key = prefix
+                        break
+                handler_name = f"_get_{platform_key}_device"
+                handler = getattr(self, handler_name, self._get_device)
+                handler(token)
         return _platform_str
 
     @classmethod
