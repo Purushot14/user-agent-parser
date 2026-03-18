@@ -151,4 +151,4 @@ Perfect for high-throughput applications, web analytics, security analysis, and 
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md) for full version history.
+See [CHANGELOG.md](https://github.com/Purushot14/user-agent-parser/blob/main/CHANGELOG.md) for full version history.

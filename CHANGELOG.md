@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2026-03-18
+### Fixed
+- README: CHANGELOG link now points to absolute GitHub URL so it works on PyPI.
+
 ## [0.2.0] - 2026-03-18
 
 ### Added

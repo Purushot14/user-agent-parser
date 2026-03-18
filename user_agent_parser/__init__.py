@@ -5,7 +5,7 @@ Enhanced with advanced analytics, batch processing, and comprehensive device det
 """
 
 __author__ = "Prakash14"
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 # Legacy API (backward compatibility)
 # Advanced API
