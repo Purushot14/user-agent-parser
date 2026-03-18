@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2026-03-18
+
+### Added
+- `AdvancedUserAgentEngine` with ML-inspired pattern matching and confidence scoring.
+- `DeviceCategory` enum: smartphone, tablet, desktop, laptop, smart_tv, gaming_console, smart_watch, iot_device, bot.
+- `BrowserCapabilities` dataclass: WebGL, WebRTC, Service Worker, PWA, touch, VR/XR support flags.
+- `SecurityFingerprint` dataclass: privacy mode, ad-blocker, tracking protection detection.
+- `AdvancedResult` dataclass with confidence score, detection level, browser engine, device brand/model.
+- `analyze()` — single UA advanced analysis.
+- `batch_analyze()` — parallel batch processing via `ThreadPoolExecutor`.
+- `generate_analytics()` — `AnalyticsReport` with browser/OS/device distributions, export to JSON/CSV.
+- `UserAgentAnalytics` and `BatchProcessor` for large-scale UA dataset processing.
+- Modern device database (`modern_devices.py`) covering 2024–2025 devices.
+- `CLAUDE.md` project guidance for Claude Code.
+- Benchmark scripts (`benchmark.py`, `advanced_benchmark.py`).
+
 ## [0.1.7] - 2026-03-18
 ### Fixed
 - `parser.py`: Fixed `_get_compatible_device` where `_token[2]` always overwrote `_token[3]` for `device_host`.

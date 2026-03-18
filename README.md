@@ -145,20 +145,10 @@ report = generate_analytics(user_agents, export_format='csv', filename='traffic_
 ```
 
 Perfect for high-throughput applications, web analytics, security analysis, and modern web development!
-Running Tests
+## Running Tests
 
-_____________
+    poetry run pytest
 
-    python -m unittest discover
+## Changelog
 
-
-Changelog
-__________
-
-### Version 0.1.1
-
-* Doc added
-
-### Version 0.1
-
-* Initial release
+See [CHANGELOG.md](CHANGELOG.md) for full version history.
